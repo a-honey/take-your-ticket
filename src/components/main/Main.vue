@@ -7,15 +7,30 @@
       <div class="formContainer">
         <div class="imgFormContainer">
           <div class="imgBox">
-            <img src="" alt="" />
+            <img :src="img" alt="티켓 이미지" />
           </div>
-          <input type="file" />
+          <input type="file" @change="handleImgChange" />
         </div>
         <div class="contentContainer">
-          <input type="text" placeholder="제목을 입력해주세요." />
-          <input type="text" placeholder="감독 및 배우를 입력해주세요." />
-          <input type="text" placeholder="평점을 입력해주세요." />
-          <textarea placeholder="리뷰를 입력해주세요."></textarea>
+          <input
+            type="text"
+            placeholder="제목을 입력해주세요."
+            v-model="title"
+          />
+          <input
+            type="text"
+            placeholder="감독 및 배우를 입력해주세요."
+            v-model="directorAndActors"
+          />
+          <input
+            type="text"
+            placeholder="평점을 입력해주세요."
+            v-model="rating"
+          />
+          <textarea
+            placeholder="리뷰를 입력해주세요."
+            v-model="review"
+          ></textarea>
         </div>
       </div>
       <div class="btns">
@@ -30,9 +45,38 @@
 export default {
   name: "MainPage",
   components: {},
+  data() {
+    return {
+      img: "",
+      title: "",
+      directorAndActors: "",
+      rating: 0,
+      review: "",
+    };
+  },
   methods: {
     goResult() {
+      console.log(
+        this.img,
+        this.title,
+        this.directorAndActors,
+        this.rating,
+        this.review
+      );
       this.$router.push("/ticket");
+    },
+    handleImgChange(e) {
+      e.preventDefault();
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.img = e.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      } else {
+        alert("이미지를 넣어주세요.");
+        return;
+      }
     },
   },
   mounted() {
@@ -72,6 +116,14 @@ form {
   height: 400px;
   background-color: #d8d8d8;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.imgBox > img {
+  width: 100%;
+  height: 100%;
 }
 
 .contentContainer {
