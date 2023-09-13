@@ -22,15 +22,20 @@
     </div>
     <div class="btns">
       <button>Save</button>
-      <button>Back</button>
+      <button @click="goBack">Back</button>
     </div>
   </main>
 </template>
 
 <script>
 export default {
-  name: "MainPage",
+  name: "TickPage",
   components: {},
+  methods: {
+    goBack() {
+      this.$router.push("/");
+    },
+  },
   mounted() {
     console.log("마운트됨");
   },

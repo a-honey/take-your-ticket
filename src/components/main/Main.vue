@@ -3,12 +3,26 @@
     <h1>Take Your Ticket</h1>
   </header>
   <main>
-    <div>
+    <form>
+      <div class="formContainer">
+        <div class="imgFormContainer">
+          <div class="imgBox">
+            <img src="" alt="" />
+          </div>
+          <input type="file" />
+        </div>
+        <div class="contentContainer">
+          <input type="text" placeholder="제목을 입력해주세요." />
+          <input type="text" placeholder="감독 및 배우를 입력해주세요." />
+          <input type="text" placeholder="평점을 입력해주세요." />
+          <textarea placeholder="리뷰를 입력해주세요."></textarea>
+        </div>
+      </div>
       <div class="btns">
-        <button>Take</button>
+        <button @click="goResult">Take</button>
         <button type="button">Bring</button>
       </div>
-    </div>
+    </form>
   </main>
 </template>
 
@@ -16,6 +30,11 @@
 export default {
   name: "MainPage",
   components: {},
+  methods: {
+    goResult() {
+      this.$router.push("/ticket");
+    },
+  },
   mounted() {
     console.log("마운트됨");
   },
@@ -26,29 +45,29 @@ export default {
 form {
   background-color: #ededed;
   border-radius: 5px;
-  width: 40vw;
   padding: 30px 100px;
-  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: center;
   gap: 20px;
 }
 
 .formContainer {
   width: 100%;
   display: flex;
+  gap: 40px;
   justify-content: space-between;
 }
 
-.imgContainer,
+.imgFormContainer,
 .contentContainer {
   display: flex;
   flex-direction: column;
+  height: 500px;
 }
 
-.imgBox > img {
+.imgBox {
   width: 300px;
   height: 400px;
   background-color: #d8d8d8;
