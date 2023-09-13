@@ -5,14 +5,14 @@
   <main>
     <div class="Container">
       <div class="imgContainer">
-        <img src="" alt="" />
+        <img :src="img" alt="" />
       </div>
       <div class="ticketContainer">
         <label class="items">TAKE YOUR TICKET</label>
-        <div class="items">그리스인 조르바</div>
-        <div class="items">니코스 카잔차키스</div>
-        <div class="items">*****</div>
-        <div class="items">#조르바 #자유 #히피 #열린책들</div>
+        <div class="items">{{ title }}</div>
+        <div class="items">{{ directorAndActors }}</div>
+        <div class="items">{{ rating }}</div>
+        <div class="items">{{ review }}</div>
         <div class="results items">
           <div>interested</div>
           <div>4.5</div>
@@ -31,6 +31,17 @@
 export default {
   name: "TickPage",
   components: {},
+  data() {
+    const searchParams = new URLSearchParams(this.$route.query);
+
+    return {
+      img: searchParams.get("img") || "",
+      title: searchParams.get("title") || "",
+      directorAndActors: searchParams.get("directorAndActors") || "",
+      rating: searchParams.get("rating") || "",
+      review: searchParams.get("review") || "",
+    };
+  },
   methods: {
     goBack() {
       this.$router.push("/");

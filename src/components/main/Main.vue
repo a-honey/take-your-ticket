@@ -87,7 +87,9 @@ export default {
           console.error(error);
         });
 
-      this.$router.push("/ticket");
+      this.$router.push(
+        `/ticket?title=${this.title}&img=${this.img}&title=${this.title}&directorAndActors=${this.rating}&review=${this.review}`
+      );
     },
     handleImgChange(e) {
       e.preventDefault();
