@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="btns">
-        <button @click="goResult">Take</button>
+        <button @click="handleSubmit">Take</button>
         <button type="button">Bring</button>
       </div>
     </form>
@@ -50,19 +50,43 @@ export default {
       img: "",
       title: "",
       directorAndActors: "",
-      rating: 0,
+      rating: "",
       review: "",
     };
   },
   methods: {
-    goResult() {
-      console.log(
-        this.img,
-        this.title,
-        this.directorAndActors,
-        this.rating,
-        this.review
-      );
+    handleSubmit() {
+      const apiKeyID = process.env.API_KEY_ID;
+      const apiKey = process.env.API_KEY;
+
+      const headers = new Headers({
+        "X-NCP-APIGW-API-KEY-ID": apiKeyID,
+        "X-NCP-APIGW-API-KEY": apiKey,
+        "Content-Type": "application/json",
+      });
+
+      fetch(
+        // 네이버 CLOVA Sentiment REST API
+        "https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze",
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({ content: this.review }),
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("응답없음");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
       this.$router.push("/ticket");
     },
     handleImgChange(e) {
