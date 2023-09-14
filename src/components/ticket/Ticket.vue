@@ -8,11 +8,11 @@
         <img :src="img" alt="" />
       </div>
       <div class="ticketContainer">
-        <label class="items">TAKE YOUR TICKET</label>
-        <div class="items">{{ title }}</div>
-        <div class="items">{{ directorAndActors }}</div>
-        <div class="items">{{ rating }}</div>
-        <div class="items">{{ review }}</div>
+        <label class="items logo">TAKE YOUR TICKET</label>
+        <div class="items title">{{ title }}</div>
+        <div class="items directorAndActors">{{ directorAndActors }}</div>
+        <div class="items rating">{{ rating }}</div>
+        <div class="items review">{{ review }}</div>
         <div class="results items">
           <div>interested</div>
           <div>4.5</div>
@@ -70,18 +70,46 @@ main {
   background-color: #ededed;
 }
 
+.imgContainer > img {
+  width: 100%;
+  height: 100%;
+}
+
 .ticketContainer {
   display: grid;
   grid-template-rows: 0.5fr 1fr 1fr 1fr 2fr 1fr;
-  gap: 10px;
 }
 
 .items {
-  background-color: #d8d8d8;
+  border-bottom: 2px solid black;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  justify-content: left;
+  font-weight: 700;
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
 }
 .results {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+.results > div {
+  width: 100%;
+  height: 100%;
+  border-right: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.results > div:last-child {
+  border-right: none;
 }
 button {
   padding: 10px 20px;
