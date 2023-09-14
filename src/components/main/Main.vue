@@ -20,7 +20,7 @@
           <input
             type="text"
             placeholder="감독 및 배우를 입력해주세요."
-            v-model="directorAndActors"
+            v-model="info"
           />
           <input
             type="text"
@@ -51,7 +51,7 @@ export default {
     return {
       img: searchParams.get("img") || null,
       title: searchParams.get("title") || "",
-      directorAndActors: searchParams.get("directorAndActors") || null,
+      info: searchParams.get("info") || null,
       rating: searchParams.get("rating") || null,
       review: searchParams.get("review") || null,
     };
@@ -92,7 +92,7 @@ export default {
 
       // 유저가 입력한 데이터를 URL로 담아 전달
       this.$router.push(
-        `/ticket?title=${this.title}&img=${this.img}&title=${this.title}&directorAndActors=${this.rating}&review=${this.review}`
+        `/ticket?title=${this.title}&img=${this.img}&rating=${this.rating}&info=${this.info}&review=${this.review}`
       );
     },
     handleImgChange(e) {

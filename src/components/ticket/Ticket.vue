@@ -10,8 +10,15 @@
       <div class="ticketContainer">
         <label class="items logo">TAKE YOUR TICKET</label>
         <div class="items title">{{ title }}</div>
-        <div class="items directorAndActors">{{ directorAndActors }}</div>
-        <div class="items rating">{{ rating }}</div>
+        <div class="items info">{{ info }}</div>
+        <div class="items rating">
+          <img
+            v-for="a in rating"
+            :key="a"
+            src="/start.png"
+            alt="rating_star"
+          />
+        </div>
         <div class="items review">{{ review }}</div>
         <div class="results items">
           <div>interested</div>
@@ -37,8 +44,8 @@ export default {
     return {
       img: searchParams.get("img") || "",
       title: searchParams.get("title") || "",
-      directorAndActors: searchParams.get("directorAndActors") || "",
-      rating: searchParams.get("rating") || "",
+      info: searchParams.get("info") || "",
+      rating: parseInt(searchParams.get("rating")) || "",
       review: searchParams.get("review") || "",
     };
   },
@@ -95,6 +102,10 @@ main {
 .title {
   font-size: 20px;
   font-weight: 700;
+}
+.rating > img {
+  width: 40px;
+  height: 40px;
 }
 .results {
   display: grid;
