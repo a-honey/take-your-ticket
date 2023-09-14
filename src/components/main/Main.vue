@@ -3,7 +3,7 @@
     <h1>Take Your Ticket</h1>
   </header>
   <main>
-    <form>
+    <form @submit="handleSubmit">
       <div class="formContainer">
         <div class="imgFormContainer">
           <div class="imgBox">
@@ -34,8 +34,8 @@
         </div>
       </div>
       <div class="btns">
-        <button @click="handleSubmit">Take</button>
-        <button type="button">Bring</button>
+        <button type="submit">Take</button>
+        <button type="button" @click="handleBringInfo">Bring</button>
       </div>
     </form>
   </main>
@@ -49,11 +49,11 @@ export default {
     const searchParams = new URLSearchParams(this.$route.query);
 
     return {
-      img: searchParams.get("img") || "",
+      img: searchParams.get("img") || null,
       title: searchParams.get("title") || "",
-      directorAndActors: searchParams.get("directorAndActors") || "",
-      rating: searchParams.get("rating") || "",
-      review: searchParams.get("review") || "",
+      directorAndActors: searchParams.get("directorAndActors") || null,
+      rating: searchParams.get("rating") || null,
+      review: searchParams.get("review") || null,
     };
   },
   methods: {
@@ -72,6 +72,7 @@ export default {
         "https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze",
         {
           method: "POST",
+          mode: "no-cors",
           headers: headers,
           body: JSON.stringify({ content: this.review }),
         }
@@ -83,12 +84,13 @@ export default {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
+          alert(data);
         })
         .catch((error) => {
           console.error(error);
         });
 
+      // 유저가 입력한 데이터를 URL로 담아 전달
       this.$router.push(
         `/ticket?title=${this.title}&img=${this.img}&title=${this.title}&directorAndActors=${this.rating}&review=${this.review}`
       );
@@ -106,6 +108,7 @@ export default {
         return;
       }
     },
+
     handleBringInfo() {
       if (!this.title) {
         alert("정보를 불러오기 위해서 영화 제목을 입력해주세요.");
@@ -126,16 +129,16 @@ export default {
           this.title
         )}display=${10}&start=1&genre=1`,
         {
-          method: "POST",
+          method: "GET",
+          mode: "no-cors",
           headers: headers,
-          body: JSON.stringify({ content: this.review }),
         }
       )
         .then((response) => {
           if (!response.ok) {
             throw new Error("응답없음");
           }
-          return response.channel.item.json();
+          return response.json();
         })
         .then((data) => {
           console.log(data);
@@ -146,7 +149,7 @@ export default {
     },
   },
   mounted() {
-    console.log("마운트됨");
+    console.log("Hello, take your ticket :D");
   },
 };
 </script>
