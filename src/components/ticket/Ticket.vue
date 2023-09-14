@@ -29,7 +29,8 @@
     </div>
     <div class="btns">
       <button>Save</button>
-      <button @click="goBack">Back</button>
+      <button @click="handleBackClick">Back</button>
+      <button @click="handleNewClick">New</button>
     </div>
   </main>
 </template>
@@ -50,8 +51,13 @@ export default {
     };
   },
   methods: {
-    goBack() {
+    handleNewClick() {
       this.$router.push("/");
+    },
+    handleBackClick() {
+      this.$router.push(
+        `/?title=${this.title}&img=${this.img}&rating=${this.rating}&info=${this.info}&review=${this.review}`
+      );
     },
   },
   mounted() {

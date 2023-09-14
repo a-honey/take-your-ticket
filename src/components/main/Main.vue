@@ -49,15 +49,19 @@ export default {
     const searchParams = new URLSearchParams(this.$route.query);
 
     return {
-      img: searchParams.get("img") || null,
+      img: searchParams.get("img") || "",
       title: searchParams.get("title") || "",
-      info: searchParams.get("info") || null,
-      rating: searchParams.get("rating") || null,
-      review: searchParams.get("review") || null,
+      info: searchParams.get("info") || "",
+      rating: searchParams.get("rating") || "",
+      review: searchParams.get("review") || "",
     };
   },
   methods: {
     handleSubmit() {
+      if (!this.title || !this.info || !this.rating || !this.review) {
+        alert("입력값을 확인해주세요.");
+        return;
+      }
       const apiKeyID = process.env.VUE_APP_API_KEY_ID;
       const apiKey = process.env.VUE_APP_API_KEY;
 
