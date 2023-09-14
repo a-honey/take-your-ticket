@@ -46,12 +46,14 @@ export default {
   name: "MainPage",
   components: {},
   data() {
+    const searchParams = new URLSearchParams(this.$route.query);
+
     return {
-      img: "",
-      title: "",
-      directorAndActors: "",
-      rating: "",
-      review: "",
+      img: searchParams.get("img") || "",
+      title: searchParams.get("title") || "",
+      directorAndActors: searchParams.get("directorAndActors") || "",
+      rating: searchParams.get("rating") || "",
+      review: searchParams.get("review") || "",
     };
   },
   methods: {
@@ -103,6 +105,44 @@ export default {
         alert("이미지를 넣어주세요.");
         return;
       }
+    },
+    handleBringInfo() {
+      if (!this.title) {
+        alert("정보를 불러오기 위해서 영화 제목을 입력해주세요.");
+        return;
+      }
+      const apiKeyID = process.env.API_KEY_ID;
+      const apiKey = process.env.API_KEY;
+
+      const headers = new Headers({
+        "X-Naver-Client-Id": apiKeyID,
+        "X-Naver-Client-Secret": apiKey,
+        "Content-Type": "application/json",
+      });
+
+      fetch(
+        // 네이버 영화 검색 REST API
+        `https://openapi.naver.com/v1/search/movie.xml?query=${encodeURIComponent(
+          this.title
+        )}display=${10}&start=1&genre=1`,
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify({ content: this.review }),
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("응답없음");
+          }
+          return response.channel.item.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
   mounted() {
