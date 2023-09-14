@@ -58,8 +58,8 @@ export default {
   },
   methods: {
     handleSubmit() {
-      const apiKeyID = process.env.API_KEY_ID;
-      const apiKey = process.env.API_KEY;
+      const apiKeyID = process.env.VUE_APP_API_KEY_ID;
+      const apiKey = process.env.VUE_APP_API_KEY;
 
       const headers = new Headers({
         "X-NCP-APIGW-API-KEY-ID": apiKeyID,
@@ -111,8 +111,8 @@ export default {
         alert("정보를 불러오기 위해서 영화 제목을 입력해주세요.");
         return;
       }
-      const apiKeyID = process.env.API_KEY_ID;
-      const apiKey = process.env.API_KEY;
+      const apiKeyID = process.env.VUE_APP_API_KEY_ID;
+      const apiKey = process.env.VUE_APP_API_KEY;
 
       const headers = new Headers({
         "X-Naver-Client-Id": apiKeyID,
