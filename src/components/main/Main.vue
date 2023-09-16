@@ -87,7 +87,7 @@
           <img
             v-for="a in rating"
             :key="a"
-            src="/src/assets/star.png"
+            src="../../assets/star.png"
             alt="rating_star"
           />
         </div>
