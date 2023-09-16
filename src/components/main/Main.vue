@@ -22,11 +22,46 @@
             placeholder="감독 및 배우를 입력해주세요."
             v-model="info"
           />
-          <input
-            type="text"
-            placeholder="평점을 입력해주세요."
-            v-model="rating"
-          />
+          <div class="ratingContainer">
+            <div class="rating">
+              <input
+                type="radio"
+                id="star1"
+                name="rating"
+                value="1"
+                v-model="rating"
+              />
+              <input
+                type="radio"
+                id="star3"
+                name="rating"
+                value="2"
+                v-model="rating"
+              />
+              <input
+                type="radio"
+                id="star5"
+                name="rating"
+                value="3"
+                v-model="rating"
+              />
+              <input
+                type="radio"
+                id="star7"
+                name="rating"
+                value="4"
+                v-model="rating"
+              />
+              <input
+                type="radio"
+                id="star9"
+                name="rating"
+                value="5"
+                v-model="rating"
+              />
+            </div>
+          </div>
+          <div>Your rating: {{ rating }}</div>
           <textarea
             placeholder="리뷰를 입력해주세요."
             v-model="review"
@@ -52,7 +87,7 @@
           <img
             v-for="a in rating"
             :key="a"
-            src="/start.png"
+            src="/src/assets/star.png"
             alt="rating_star"
           />
         </div>
@@ -242,6 +277,7 @@ form {
 
 .contentContainer {
   gap: 20px;
+  position: relative;
 }
 
 .contentContainer > input {
@@ -252,6 +288,47 @@ form {
   border: 0;
 }
 
+div.rating {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+div.ratingContainer::after {
+  position: absolute;
+  content: " ";
+  right: 0;
+  top: 160px;
+  width: 100px;
+  height: 50px;
+  background-color: #ededed;
+}
+
+div.rating > input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  background: url("/src/assets/star.png") no-repeat right center;
+  color: black;
+  background-size: 40px 40px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+div.rating > input:hover {
+  background: url("/src/assets/star.png") no-repeat right center;
+  background-size: 40px 40px;
+  z-index: 20;
+}
+
+.custom-select select option {
+  background-color: #f0f0f0; /* 각 옵션의 배경색 설정 */
+  color: #333; /* 각 옵션의 텍스트 색상 설정 */
+}
 textarea {
   width: 400px;
   height: 200px;
