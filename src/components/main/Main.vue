@@ -70,6 +70,15 @@
             placeholder="리뷰를 입력해주세요."
             v-model="review"
           ></textarea>
+          <div class="keywordContainer">
+            <input v-model="keywordItem" placeholder="키워드" />
+            <button type="button" @click="handleKeyword">+</button>
+            <ul>
+              <li v-for="(keyword, index) in keywords" :key="index">
+                {{ keyword }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="btns">
@@ -97,9 +106,9 @@
         </div>
         <div class="items review">{{ review }}</div>
         <div class="results items">
-          <div>interested</div>
-          <div>4.5</div>
-          <div>춤</div>
+          <div v-for="(keyword, index) in keywords" :key="index">
+            {{ keyword }}
+          </div>
         </div>
       </div>
     </div>
@@ -126,6 +135,8 @@ export default {
       info: "",
       rating: "",
       review: "",
+      keywordItem: "",
+      keywords: [],
     };
   },
   methods: {
@@ -182,7 +193,17 @@ export default {
         return;
       }
     },
-
+    handleKeyword() {
+      if (this.keywords.length === 3) {
+        alert("키워드는 최대 3개까지 입력가능합니다.");
+        this.keywordItem = "";
+        return;
+      }
+      if (this.keywordItem.trim() !== "") {
+        this.keywords.push(this.keywordItem);
+        this.keywordItem = "";
+      }
+    },
     handleBringInfo() {
       if (!this.title) {
         alert("정보를 불러오기 위해서 영화 제목을 입력해주세요.");
@@ -328,7 +349,36 @@ div.rating > input.active {
   background-size: 40px 40px;
   filter: none;
 }
+.keywordContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
 
+.keywordContainer > input {
+  width: 100px;
+}
+ul {
+  display: grid;
+  grid-template-columns: repeat(3, 70px);
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+  gap: 5px;
+}
+li {
+  border-radius: 5px;
+  font-size: 15px;
+  background: #c2c2c2;
+}
+.keywordContainer > input {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #d8d8d8;
+}
 textarea {
   width: 400px;
   height: 200px;
