@@ -89,7 +89,7 @@
         <div class="items info">{{ info }}</div>
         <div class="items rating">
           <img
-            v-for="a in rating"
+            v-for="a in parseInt(rating)"
             :key="a"
             src="../../assets/star.png"
             alt="rating_star"
@@ -116,15 +116,13 @@ export default {
   name: "MainPage",
   components: {},
   data() {
-    const searchParams = new URLSearchParams(this.$route.query);
-
     return {
       isUploading: true,
-      img: searchParams.get("img") || "",
-      title: searchParams.get("title") || "",
-      info: searchParams.get("info") || "",
-      rating: searchParams.get("rating") || 0,
-      review: searchParams.get("review") || "",
+      img: "../../assets/post_none.png",
+      title: "",
+      info: "",
+      rating: "",
+      review: "",
     };
   },
   methods: {
@@ -293,9 +291,10 @@ form {
 }
 
 div.rating {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
 }
 
 div.rating > input {
@@ -386,6 +385,7 @@ main.isUploading {
   font-size: 20px;
   font-weight: 700;
 }
+
 .rating > img {
   width: 40px;
   height: 40px;
