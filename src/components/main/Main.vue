@@ -25,6 +25,7 @@
           <div class="ratingContainer">
             <div class="rating">
               <input
+                :class="{ active: rating >= 1 }"
                 type="radio"
                 id="star1"
                 name="rating"
@@ -32,6 +33,7 @@
                 v-model="rating"
               />
               <input
+                :class="{ active: rating >= 2 }"
                 type="radio"
                 id="star3"
                 name="rating"
@@ -39,6 +41,7 @@
                 v-model="rating"
               />
               <input
+                :class="{ active: rating >= 3 }"
                 type="radio"
                 id="star5"
                 name="rating"
@@ -46,6 +49,7 @@
                 v-model="rating"
               />
               <input
+                :class="{ active: rating >= 4 }"
                 type="radio"
                 id="star7"
                 name="rating"
@@ -53,6 +57,7 @@
                 v-model="rating"
               />
               <input
+                :class="{ active: rating >= 5 }"
                 type="radio"
                 id="star9"
                 name="rating"
@@ -61,7 +66,6 @@
               />
             </div>
           </div>
-          <div>Your rating: {{ rating }}</div>
           <textarea
             placeholder="리뷰를 입력해주세요."
             v-model="review"
@@ -119,7 +123,7 @@ export default {
       img: searchParams.get("img") || "",
       title: searchParams.get("title") || "",
       info: searchParams.get("info") || "",
-      rating: searchParams.get("rating") || "",
+      rating: searchParams.get("rating") || 0,
       review: searchParams.get("review") || "",
     };
   },
@@ -294,16 +298,6 @@ div.rating {
   align-content: center;
 }
 
-div.ratingContainer::after {
-  position: absolute;
-  content: " ";
-  right: 0;
-  top: 160px;
-  width: 100px;
-  height: 50px;
-  background-color: #ededed;
-}
-
 div.rating > input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -313,22 +307,18 @@ div.rating > input {
   height: 40px;
   padding: 10px;
   background: url("/src/assets/star.png") no-repeat right center;
-  color: black;
+  filter: grayscale(100%);
   background-size: 40px 40px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-div.rating > input:hover {
+div.rating > input.active {
   background: url("/src/assets/star.png") no-repeat right center;
   background-size: 40px 40px;
-  z-index: 20;
+  filter: none;
 }
 
-.custom-select select option {
-  background-color: #f0f0f0; /* 각 옵션의 배경색 설정 */
-  color: #333; /* 각 옵션의 텍스트 색상 설정 */
-}
 textarea {
   width: 400px;
   height: 200px;
