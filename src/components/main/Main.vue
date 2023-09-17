@@ -141,10 +141,23 @@ export default {
   },
   methods: {
     handleSubmit() {
-      if (!this.title || !this.info || !this.rating || !this.review) {
-        alert("입력값을 확인해주세요.");
+      if (this.img === "/post_none.png") {
+        alert("이미지를 넣어주세요.");
+        return;
+      } else if (this.title === "") {
+        alert("제목을 입력해주세요.");
+        return;
+      } else if (this.info === "") {
+        alert("감독 및 배우를 입력해주세요.");
+        return;
+      } else if (this.rating === "") {
+        alert("별점을 입력해주세요.");
+        return;
+      } else if (this.keywords.length < 3) {
+        alert("키워드를 3개 입력해주세요.");
         return;
       }
+
       const apiKeyID = process.env.VUE_APP_API_KEY_ID;
       const apiKey = process.env.VUE_APP_API_KEY;
 
