@@ -121,7 +121,7 @@ export default {
   data() {
     return {
       isUploading: true,
-      img: "../../assets/post_none.png",
+      img: "/post_none.png",
       title: "",
       info: "",
       rating: "",
@@ -270,12 +270,12 @@ form {
 .contentContainer {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 100%;
 }
 
 .imgBox {
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 500px;
   background-color: #d8d8d8;
   margin-bottom: 20px;
   display: flex;
