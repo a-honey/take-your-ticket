@@ -243,11 +243,13 @@ export default {
         });
     },
     handleNewClick() {
-      this.img = "";
+      this.img = "/post_none.png";
       this.title = "";
       this.info = "";
       this.rating = "";
       this.review = "";
+      this.keywordItem = "";
+      this.keywords = [];
       this.isUploading = true;
     },
     handleBackClick() {
