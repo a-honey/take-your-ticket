@@ -79,7 +79,7 @@
     </form>
   </main>
   <main class="isUploading" v-if="isUploading === false">
-    <div class="Container">
+    <div id="capture" class="Container">
       <div class="imgContainer">
         <img :src="img" alt="" />
       </div>
@@ -104,7 +104,7 @@
       </div>
     </div>
     <div class="btns">
-      <button>Save</button>
+      <button @click="handleSaveClick">Save</button>
       <button @click="handleBackClick">Back</button>
       <button @click="handleNewClick">New</button>
     </div>
@@ -112,6 +112,9 @@
 </template>
 
 <script>
+import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
+
 export default {
   name: "MainPage",
   components: {},
@@ -228,6 +231,14 @@ export default {
     },
     handleBackClick() {
       this.isUploading = true;
+    },
+    async handleSaveClick() {
+      const capture = document.getElementById("capture");
+      const canvas = await html2canvas(capture);
+      const blob = await new Promise((resolve) => {
+        canvas.toBlob(resolve);
+      });
+      saveAs(blob, `take_${this.title}_ticket.png`);
     },
   },
   mounted() {
@@ -349,7 +360,6 @@ main.isUploading {
 }
 .Container {
   display: flex;
-  gap: 40px;
 }
 .ticketContainer,
 .imgContainer {
