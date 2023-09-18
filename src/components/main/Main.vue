@@ -102,6 +102,7 @@
         name="gap"
         v-model="styles.gap"
       />
+      <button>크롭하기</button>
     </nav>
     <nav class="nav right">
       <div>패딩</div>
@@ -468,11 +469,13 @@ button {
 /* v-if isUploading === false */
 nav {
   position: fixed;
-  background-color: #c9c9c9;
   margin-top: 10vh;
   top: 0;
   bottom: 0;
   width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 nav.left {
