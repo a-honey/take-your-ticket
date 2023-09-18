@@ -88,7 +88,27 @@
     </form>
   </main>
   <main class="isUploading" v-if="isUploading === false">
-    <div id="capture" class="Container">
+    <nav class="nav left">
+      <label>여백주기</label>
+      <input
+        :class="{ active: rating >= 5 }"
+        type="text"
+        name="gap"
+        v-model="styles.gap"
+      />
+    </nav>
+    <nav class="nav right">
+      <div>패딩</div>
+      <div>패딩</div>
+    </nav>
+    <div
+      id="capture"
+      :style="{
+        gap: styles.gap + 'px',
+        padding: styles.gap + 'px',
+      }"
+      class="Container"
+    >
       <div class="imgContainer">
         <img :src="img" alt="" />
       </div>
@@ -137,6 +157,9 @@ export default {
       review: "",
       keywordItem: "",
       keywords: [],
+      styles: {
+        gap: 0,
+      },
     };
   },
   methods: {
@@ -364,6 +387,7 @@ div.rating > input.active {
   background-size: 40px 40px;
   filter: none;
 }
+
 .keywordContainer {
   display: flex;
   justify-content: flex-start;
@@ -374,6 +398,7 @@ div.rating > input.active {
 .keywordContainer > input {
   width: 100px;
 }
+
 ul {
   display: grid;
   grid-template-columns: repeat(3, 70px);
@@ -418,11 +443,28 @@ button {
 }
 
 /* v-if isUploading === false */
+nav {
+  position: fixed;
+  background-color: #c9c9c9;
+  margin-top: 10vh;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+}
+
+nav.left {
+  left: 0;
+}
+
+nav.right {
+  right: 0;
+}
 
 main.isUploading {
   flex-direction: column;
   gap: 40px;
 }
+
 .Container {
   display: flex;
 }
