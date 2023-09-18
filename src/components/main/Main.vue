@@ -75,7 +75,13 @@
             <button type="button" @click="handleKeyword">+</button>
             <ul>
               <li v-for="(keyword, index) in keywords" :key="index">
-                {{ keyword }}
+                {{ keyword
+                }}<button
+                  class="itemDelete"
+                  @click="handleKeywordDelete(index, $event)"
+                >
+                  x
+                </button>
               </li>
             </ul>
           </div>
@@ -163,7 +169,9 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
+    handleSubmit(e) {
+      e.preventDefault();
+
       if (this.img === "/post_none.png") {
         alert("이미지를 넣어주세요.");
         return;
@@ -229,7 +237,8 @@ export default {
         return;
       }
     },
-    handleKeyword() {
+    handleKeyword(e) {
+      e.preventDefault();
       if (this.keywords.length === 3) {
         alert("키워드는 최대 3개까지 입력가능합니다.");
         this.keywordItem = "";
@@ -240,7 +249,12 @@ export default {
         this.keywordItem = "";
       }
     },
-    handleBringInfo() {
+    handleKeywordDelete(index, e) {
+      e.preventDefault();
+      this.keywords.splice(index, 1);
+    },
+    handleBringInfo(e) {
+      e.preventDefault();
       if (!this.title) {
         alert("정보를 불러오기 위해서 영화 제목을 입력해주세요.");
         return;
@@ -435,6 +449,15 @@ button {
   font-weight: 700;
   border-radius: 5px;
   font-size: 20px;
+}
+
+.itemDelete {
+  margin-left: 5px;
+  padding: 0;
+  background-color: transparent;
+  color: black;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .btns {
