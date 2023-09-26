@@ -2,7 +2,7 @@
   <header>
     <h1>Take Your Ticket</h1>
   </header>
-  <main v-if="isUploading === true">
+  <main v-if="mode === 'edit'">
     <form @submit="handleSubmit">
       <div class="formContainer">
         <div class="imgFormContainer">
@@ -93,7 +93,7 @@
       </div>
     </form>
   </main>
-  <main class="isUploading" v-if="isUploading === false">
+  <main class="isUploading" v-if="mode !== 'edit'">
     <nav class="nav left">
       <label>여백주기</label>
       <input
@@ -105,8 +105,10 @@
       <button>크롭하기</button>
     </nav>
     <nav class="nav right">
-      <div>패딩</div>
-      <div>패딩</div>
+      <button @click="handleMode('ticket')">티켓ver</button>
+      <button @click="handleMode('crop')">크롭ver</button>
+      <button @click="handleMode('square')">대표ver</button>
+      <div>{{ mode }}</div>
     </nav>
     <div
       id="capture"
@@ -119,7 +121,8 @@
       <div class="imgContainer">
         <img :src="img" alt="" />
       </div>
-      <div class="ticketContainer">
+      <!-- ticket ver -->
+      <div class="ticketContainer" v-if="mode === 'ticket'">
         <label class="items logo">TAKE YOUR TICKET</label>
         <div class="items title">{{ title }}</div>
         <div class="items info">{{ info }}</div>
@@ -136,6 +139,17 @@
           <div v-for="(keyword, index) in keywords" :key="index">
             {{ keyword }}
           </div>
+        </div>
+      </div>
+      <!-- square ver -->
+      <div class="squareContainer" v-if="mode === 'square'">
+        <div class="rating">
+          <img
+            v-for="a in parseInt(rating)"
+            :key="a"
+            src="../../assets/star.png"
+            alt="rating_star"
+          />
         </div>
       </div>
     </div>
@@ -156,7 +170,7 @@ export default {
   components: {},
   data() {
     return {
-      isUploading: true,
+      mode: "edit",
       img: "/post_none.png",
       title: "",
       info: "",
@@ -223,7 +237,7 @@ export default {
         });
 
       // 유저가 입력한 데이터를 URL로 담아 전달
-      this.isUploading = false;
+      this.mode = "ticket";
     },
     handleImgChange(e) {
       e.preventDefault();
@@ -301,10 +315,13 @@ export default {
       this.review = "";
       this.keywordItem = "";
       this.keywords = [];
-      this.isUploading = true;
+      this.mode = "edit";
     },
     handleBackClick() {
-      this.isUploading = true;
+      this.mode = "edit";
+    },
+    handleMode(modeName) {
+      this.mode = modeName;
     },
     async handleSaveClick() {
       const capture = document.getElementById("capture");
@@ -470,10 +487,11 @@ button {
 nav {
   position: fixed;
   margin-top: 10vh;
-  top: 0;
+  top: 20px;
   bottom: 0;
   width: 250px;
   display: flex;
+  gap: 20px;
   flex-direction: column;
   align-items: center;
 }
@@ -498,10 +516,13 @@ main.isUploading {
 .imgContainer {
   width: 400px;
   height: 600px;
-  padding: 20px;
   background-color: #ededed;
 }
 
+.imgContainer {
+  width: 440px;
+  height: 640px;
+}
 .imgContainer > img {
   width: 100%;
   height: 100%;
@@ -509,12 +530,12 @@ main.isUploading {
 
 .ticketContainer {
   display: grid;
+  padding: 20px;
   grid-template-rows: 0.5fr 1fr 1fr 1fr 2fr 1fr;
 }
 
 .items {
   border-bottom: 2px solid black;
-  display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -547,5 +568,18 @@ main.isUploading {
 }
 .results > div:last-child {
   border-right: none;
+}
+
+.squareContainer {
+  width: 200px;
+  height: 640px;
+  background-color: #ededed;
+}
+.squareContainer > div.rating {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  justify-items: center;
+  align-items: center;
 }
 </style>
