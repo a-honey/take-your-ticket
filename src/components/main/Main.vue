@@ -102,7 +102,6 @@
         name="gap"
         v-model="styles.gap"
       />
-      <button>크롭하기</button>
     </nav>
     <nav class="nav right">
       <button @click="handleMode('ticket')">티켓ver</button>
@@ -562,6 +561,7 @@ main.isUploading {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
 }
 .results > div:last-child {
   border-right: none;
@@ -592,7 +592,5 @@ main.isUploading {
 
 .squareContainer > .results > div {
   border-right: none;
-  font-size: 20px;
-  font-weight: 700;
 }
 </style>
