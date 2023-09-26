@@ -143,13 +143,10 @@
       </div>
       <!-- square ver -->
       <div class="squareContainer" v-if="mode === 'square'">
-        <div class="rating">
-          <img
-            v-for="a in parseInt(rating)"
-            :key="a"
-            src="../../assets/star.png"
-            alt="rating_star"
-          />
+        <div class="results">
+          <div v-for="(keyword, index) in keywords" :key="index">
+            #{{ keyword }}
+          </div>
         </div>
       </div>
     </div>
@@ -574,6 +571,9 @@ main.isUploading {
   width: 200px;
   height: 640px;
   background-color: #ededed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .squareContainer > div.rating {
   display: grid;
@@ -581,5 +581,18 @@ main.isUploading {
   grid-template-rows: repeat(5, 1fr);
   justify-items: center;
   align-items: center;
+}
+
+.squareContainer > .results {
+  margin: 20px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.squareContainer > .results > div {
+  border-right: none;
+  font-size: 20px;
+  font-weight: 700;
 }
 </style>
