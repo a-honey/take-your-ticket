@@ -7,10 +7,11 @@
       <div class="formContainer">
         <div class="imgFormContainer">
           <div class="imgBox">
-            <img :src="img" alt="티켓 이미지" />
+            <img :src="img" alt="티켓 이미지" @error="handleError" />
           </div>
           <input type="file" @change="handleImgChange" />
           <input
+            class="input"
             type="text"
             placeholder="이미지 주소를 입력해주세요."
             v-model="img"
@@ -122,7 +123,7 @@
       class="Container"
     >
       <div class="imgContainer">
-        <img :src="img" alt="" />
+        <img :src="img" alt="" @error="handleError" />
       </div>
       <!-- ticket ver -->
       <div class="ticketContainer" v-if="mode === 'ticket'">
@@ -171,7 +172,7 @@ export default {
   data() {
     return {
       mode: "edit",
-      img: "/post_none.png",
+      img: "",
       title: "",
       info: "",
       rating: "",
@@ -251,6 +252,9 @@ export default {
         alert("이미지를 넣어주세요.");
         return;
       }
+    },
+    handleError() {
+      this.img = "/post_none.png";
     },
     handleKeyword(e) {
       e.preventDefault();
@@ -362,6 +366,7 @@ form {
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: 10px;
 }
 
 .imgBox {
@@ -384,6 +389,13 @@ form {
   position: relative;
 }
 
+.input {
+  width: 400px;
+  height: 15px;
+  padding: 10px;
+  background-color: #d8d8d8;
+  border: 0;
+}
 .contentContainer > input {
   width: 400px;
   height: 40px;
@@ -592,6 +604,7 @@ main.isUploading {
   display: flex;
   gap: 10px;
   flex-direction: column;
+  font-size: 25px;
 }
 
 .squareContainer > .results > div {
