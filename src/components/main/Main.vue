@@ -122,8 +122,16 @@
       }"
       class="Container"
     >
-      <div class="imgContainer">
+      <div class="imgContainer" v-if="mode !== 'crop'">
         <img :src="img" alt="" @error="handleError" />
+      </div>
+      <!-- crop -->
+      <div class="imgContainer" v-if="mode === 'crop'">
+        <img
+          src="../../assets/ticket.png"
+          :style="{ backgroundImage: 'url(' + img + ')' }"
+          @error="handleError"
+        />
       </div>
       <!-- ticket ver -->
       <div class="ticketContainer" v-if="mode === 'ticket'">
@@ -534,8 +542,11 @@ main.isUploading {
 .imgContainer {
   width: 440px;
   height: 640px;
+  overflow: hidden;
 }
 .imgContainer > img {
+  background-size: cover;
+  background-clip: content-box;
   width: 100%;
   height: 100%;
 }
