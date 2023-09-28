@@ -112,7 +112,6 @@
       <button @click="handleMode('ticket')">티켓ver</button>
       <button @click="handleMode('crop')">크롭ver</button>
       <button @click="handleMode('square')">대표ver</button>
-      <div>{{ mode }}</div>
     </nav>
     <div
       id="capture"
