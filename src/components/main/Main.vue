@@ -10,6 +10,11 @@
             <img :src="img" alt="티켓 이미지" />
           </div>
           <input type="file" @change="handleImgChange" />
+          <input
+            type="text"
+            placeholder="이미지 주소를 입력해주세요."
+            v-model="img"
+          />
         </div>
         <div class="contentContainer">
           <input
