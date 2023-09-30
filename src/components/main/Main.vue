@@ -605,7 +605,6 @@ main.isUploading {
 .squareContainer {
   width: 200px;
   height: 640px;
-  background-color: #ededed;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
