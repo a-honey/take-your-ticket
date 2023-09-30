@@ -103,10 +103,17 @@
     <nav class="nav left">
       <label>여백주기</label>
       <input
-        :class="{ active: rating >= 5 }"
         type="text"
         name="gap"
         v-model="styles.gap"
+        placeholder="여백 크기를 입력해주세요"
+      />
+      <label>배경색상</label>
+      <input
+        type="text"
+        name="back"
+        v-model="styles.back"
+        placeholder="배경색상을 입력해주세요"
       />
     </nav>
     <nav class="nav right">
@@ -119,6 +126,7 @@
       :style="{
         gap: styles.gap + 'px',
         padding: styles.gap + 'px',
+        backgroundColor: styles.back,
       }"
       class="Container"
     >
@@ -189,6 +197,7 @@ export default {
       keywords: [],
       styles: {
         gap: 0,
+        back: "#ededed",
       },
     };
   },
@@ -536,7 +545,6 @@ main.isUploading {
 .imgContainer {
   width: 400px;
   height: 600px;
-  background-color: #ededed;
 }
 
 .imgContainer {
