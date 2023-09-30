@@ -139,8 +139,7 @@
       id="capture"
       :style="{
         gap: styles.gap + 'px',
-        padding: styles.gap + 'px',
-        backgroundColor: styles.back,
+        margin: styles.gap + 'px',
         fontSize: styles.fontSize + 'px',
         color: styles.fontColor,
       }"
@@ -158,7 +157,13 @@
         />
       </div>
       <!-- ticket ver -->
-      <div class="ticketContainer" v-if="mode === 'ticket'">
+      <div
+        class="ticketContainer"
+        v-if="mode === 'ticket'"
+        :style="{
+          backgroundColor: styles.back,
+        }"
+      >
         <label class="items logo">TAKE YOUR TICKET</label>
         <div class="items title">{{ title }}</div>
         <div class="items info">{{ info }}</div>
@@ -178,7 +183,13 @@
         </div>
       </div>
       <!-- square ver -->
-      <div class="squareContainer" v-if="mode === 'square'">
+      <div
+        class="squareContainer"
+        v-if="mode === 'square'"
+        :style="{
+          backgroundColor: styles.back,
+        }"
+      >
         <div class="results">
           <div v-for="(keyword, index) in keywords" :key="index">
             #{{ keyword }}
