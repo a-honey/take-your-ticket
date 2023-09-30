@@ -567,6 +567,19 @@ main.isUploading {
   gap: 40px;
 }
 
+label {
+  font-weight: 700;
+}
+
+nav > input {
+  width: 100px;
+  height: 25px;
+  padding: 5px;
+  background-color: #d8d8d8;
+  border: 0;
+  border-radius: 5px;
+}
+
 .Container {
   display: flex;
 }
