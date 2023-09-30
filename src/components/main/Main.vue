@@ -149,12 +149,12 @@
         <img :src="img" alt="" @error="handleError" />
       </div>
       <!-- crop -->
-      <div class="imgContainer" v-if="mode === 'crop'">
-        <img
-          src="../../assets/ticket.png"
-          :style="{ backgroundImage: 'url(' + img + ')' }"
-          @error="handleError"
-        />
+      <div
+        class="imgContainer"
+        :style="{ backgroundImage: 'url(' + img + ')' }"
+        v-if="mode === 'crop'"
+      >
+        <img src="../../assets/ticket.svg" @error="handleError" />
       </div>
       <!-- ticket ver -->
       <div
@@ -216,12 +216,12 @@ export default {
     return {
       mode: "edit",
       img: "",
-      title: "",
-      info: "",
-      rating: "",
-      review: "",
+      title: "시카고",
+      info: "재즈 뮤지컬",
+      rating: 4,
+      review: "재밌어요",
       keywordItem: "",
-      keywords: [],
+      keywords: ["재즈", "뮤지컬", "시카고"],
       styles: {
         gap: 0,
         back: "#ededed",
