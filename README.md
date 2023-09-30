@@ -1,28 +1,26 @@
 # **take-your-ticket**
 개인 맞춤형 티켓 생성 페이지를 Vue.js를 활용하여 제작한 개인 프로젝트입니다.
 
-![image](https://github.com/a-honey/take-your-ticket/assets/75254185/19cc10a0-def0-4856-8a68-27517846d63b)
-![image](https://github.com/a-honey/take-your-ticket/assets/75254185/949ed0e3-a7fa-4c77-a62e-8232dbea6428)
+![ezgif com-video-to-gif (3)](https://github.com/a-honey/take-your-ticket/assets/75254185/574dfe19-b147-4926-93d2-416a7916cc6e)
 
-## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## **기술 스택 및 도구**
+![Vue.js](https://img.shields.io/badge/-Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=ffffff)
+![Vue Router](https://img.shields.io/badge/-Vue_Router-42b983?style=for-the-badge&logo=vue-router&logoColor=ffffff)
+![file-saver](https://img.shields.io/badge/-file--saver-brightgreen?style=for-the-badge)
+![html2canvas](https://img.shields.io/badge/-html2canvas-ff4500?style=for-the-badge)
 
-### Compiles and minifies for production
-```
-yarn build
-```
+- **Vue**: React와의 차이점을 이해하기 위해 사용했습니다.
+- **file-saver, html2canvas**: 티켓을 캡쳐하고 저장하기 위해 사용했습니다.
 
-### Lints and fixes files
-```
-yarn lint
-```
+## 프로젝트 설치 및 실행 방법
+1. 저장소를 클론합니다.
+2. 필요한 패키지들을 설치합니다.
+   ```shell
+   npm install
+   ```
+3. 개발 서버를 실행합니다.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+   ```
+   npm run serve
+   ```
