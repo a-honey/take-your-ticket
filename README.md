@@ -1,5 +1,5 @@
 # **take-your-ticket**
-개인 맞춤형 티켓 생성 페이지를 Vue.js를 활용하여 제작한 개인 프로젝트입니다.
+영화, 책, 극 등의 사진, 리뷰, 키워드를 입력하여 개인 맞춤형 티켓을 제작하는 개인 프로젝트입니다.
 
 ![ezgif com-video-to-gif (3)](https://github.com/a-honey/take-your-ticket/assets/75254185/574dfe19-b147-4926-93d2-416a7916cc6e)
 
