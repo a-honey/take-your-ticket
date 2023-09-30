@@ -115,6 +115,20 @@
         v-model="styles.back"
         placeholder="배경색상을 입력해주세요"
       />
+      <label>폰트크기</label>
+      <input
+        type="text"
+        name="fontSize"
+        v-model="styles.fontSize"
+        placeholder="폰트크기를 입력해주세요"
+      />
+      <label>폰트색상</label>
+      <input
+        type="text"
+        name="fontColor"
+        v-model="styles.fontColor"
+        placeholder="폰트색상을 입력해주세요"
+      />
     </nav>
     <nav class="nav right">
       <button @click="handleMode('ticket')">티켓ver</button>
@@ -127,6 +141,8 @@
         gap: styles.gap + 'px',
         padding: styles.gap + 'px',
         backgroundColor: styles.back,
+        fontSize: styles.fontSize + 'px',
+        color: styles.fontColor,
       }"
       class="Container"
     >
@@ -198,6 +214,8 @@ export default {
       styles: {
         gap: 0,
         back: "#ededed",
+        fontSize: 25,
+        fontColor: "#000000",
       },
     };
   },
@@ -577,7 +595,6 @@ main.isUploading {
   font-weight: 700;
 }
 .title {
-  font-size: 20px;
   font-weight: 700;
 }
 
@@ -622,7 +639,6 @@ main.isUploading {
   display: flex;
   gap: 10px;
   flex-direction: column;
-  font-size: 25px;
 }
 
 .squareContainer > .results > div {
