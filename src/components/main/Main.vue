@@ -139,7 +139,7 @@
       id="capture"
       :style="{
         gap: styles.gap + 'px',
-        margin: styles.gap + 'px',
+        padding: styles.gap + 'px',
         fontSize: styles.fontSize + 'px',
         color: styles.fontColor,
       }"
@@ -149,12 +149,28 @@
         <img :src="img" alt="" @error="handleError" />
       </div>
       <!-- crop -->
-      <div
-        class="imgContainer"
-        :style="{ backgroundImage: 'url(' + img + ')' }"
-        v-if="mode === 'crop'"
-      >
-        <img src="../../assets/ticket.svg" @error="handleError" />
+      <div class="imgContainer" v-if="mode === 'crop'">
+        <svg
+          id="_레이어_1"
+          data-name="레이어 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 440.32 640"
+        >
+          <defs>
+            <pattern
+              id="svgBg"
+              patternUnits="userSpaceOnUse"
+              width="440.32"
+              height="640"
+            >
+              <image :href="img" width="440.32" height="640" />
+            </pattern>
+          </defs>
+          <polygon
+            fill="url(#svgBg)"
+            points="440.32 0 428.73 12.02 417.15 0 405.57 12.02 393.98 0 382.41 12.02 370.82 0 359.24 12.02 347.66 0 336.08 12.02 324.5 0 312.92 12.02 301.34 0 289.76 12.02 278.18 0 266.61 12.02 255.03 0 243.45 12.02 231.88 0 220.3 12.02 208.72 0 197.14 12.02 185.56 0 173.98 12.02 162.4 0 150.83 12.02 139.25 0 127.67 12.02 116.09 0 104.51 12.02 92.94 0 81.36 12.02 69.78 0 58.2 12.02 46.63 0 35.05 12.02 23.47 0 11.9 12.02 .32 0 .32 171.45 0 171.45 0 640 11.58 627.98 23.15 640 34.73 627.98 46.3 640 57.88 627.98 69.46 640 81.04 627.98 92.61 640 104.19 627.98 115.77 640 127.35 627.98 138.93 640 150.5 627.98 162.08 640 173.66 627.98 185.24 640 196.82 627.98 208.4 640 219.98 627.98 231.56 640 243.13 627.98 254.71 640 266.29 627.98 277.86 640 289.44 627.98 301.02 640 312.6 627.98 324.18 640 335.76 627.98 347.34 640 358.92 627.98 370.5 640 382.09 627.98 393.66 640 405.24 627.98 416.83 640 428.41 627.98 440 640 440 549.03 440.32 549.03 440.32 0"
+          />
+        </svg>
       </div>
       <!-- ticket ver -->
       <div
@@ -216,12 +232,12 @@ export default {
     return {
       mode: "edit",
       img: "",
-      title: "시카고",
-      info: "재즈 뮤지컬",
-      rating: 4,
-      review: "재밌어요",
+      title: "",
+      info: "",
+      rating: 0,
+      review: "",
       keywordItem: "",
-      keywords: ["재즈", "뮤지컬", "시카고"],
+      keywords: [],
       styles: {
         gap: 0,
         back: "#ededed",
